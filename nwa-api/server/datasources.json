@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "NorthWind": {
+    "host": "localhost",
+    "port": 5433,
+    "database": "NorthWind",
+    "username": "postgres",
+    "password": "1",
+    "name": "NorthWind",
+    "connector": "postgresql"
+  }
+}

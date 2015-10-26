@@ -1,0 +1,89 @@
+{
+  "name": "OrderDetails",
+  "options": {
+    "idInjection": false,
+    "postgresql": {
+      "schema": "public",
+      "table": "order_details"
+    }
+  },
+  "properties": {
+    "orderid": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 16,
+      "scale": 0,
+      "id": 1,
+      "postgresql": {
+        "columnName": "OrderID",
+        "dataType": "smallint",
+        "dataLength": null,
+        "dataPrecision": 16,
+        "dataScale": 0,
+        "nullable": "NO"
+      }
+    },
+    "productid": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 16,
+      "scale": 0,
+      "id": 2,
+      "postgresql": {
+        "columnName": "ProductID",
+        "dataType": "smallint",
+        "dataLength": null,
+        "dataPrecision": 16,
+        "dataScale": 0,
+        "nullable": "NO"
+      }
+    },
+    "unitprice": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 24,
+      "scale": null,
+      "postgresql": {
+        "columnName": "UnitPrice",
+        "dataType": "real",
+        "dataLength": null,
+        "dataPrecision": 24,
+        "dataScale": null,
+        "nullable": "NO"
+      }
+    },
+    "quantity": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 16,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "Quantity",
+        "dataType": "smallint",
+        "dataLength": null,
+        "dataPrecision": 16,
+        "dataScale": 0,
+        "nullable": "NO"
+      }
+    },
+    "discount": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 24,
+      "scale": null,
+      "postgresql": {
+        "columnName": "Discount",
+        "dataType": "real",
+        "dataLength": null,
+        "dataPrecision": 24,
+        "dataScale": null,
+        "nullable": "NO"
+      }
+    }
+  }
+}

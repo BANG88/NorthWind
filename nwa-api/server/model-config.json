@@ -1,0 +1,88 @@
+{
+"_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Categories": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "Customercustomerdemo": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "Customerdemographics": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "Customers": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "Employees": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "Employeeterritories": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "OrderDetails": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "Orders": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "Products": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "Region": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "Shippers": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "Suppliers": {
+    "dataSource": "NorthWind",
+    "public": true
+  },
+  "Territories": {
+    "dataSource": "NorthWind",
+    "public": true
+  }
+}
