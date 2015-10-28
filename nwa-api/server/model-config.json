@@ -1,5 +1,5 @@
 {
-"_meta": {
+  "_meta": {
     "sources": [
       "loopback/common/models",
       "loopback/server/models",
@@ -13,7 +13,6 @@
       "./mixins"
     ]
   },
-
   "User": {
     "dataSource": "db"
   },

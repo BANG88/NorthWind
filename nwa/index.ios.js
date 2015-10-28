@@ -1,53 +1,85 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
 var React = require('react-native');
+var app = require('./index.js');
+var {TabBarIOS} = require('react-native-icons');
+
 var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
+	AppRegistry,
+	StyleSheet,
+	ListView,
+	NavigatorIOS ,
+	Text,
+	View,
 } = React;
 
-var nwa = React.createClass({
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
-});
+var menus = [
+{
+	name:'Category',
+	iconName:'material|album',
+	selectedIconName:'material|album',
+	iconSize:24,
+	title:'Category',
+	view: app,
+},
+{
+	name:'Products',
+	iconName:'material|book',
+	selectedIconName:'material|book',
+	iconSize:24,
+	title:'Products',
+	view: app,
+},
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+{
+	name:'Customers',
+	iconName:'material|accounts',
+	selectedIconName:'material|accounts',
+	iconSize:24,
+	title:'Customers',
+	view: app,
+},
+{
+	name:'Account',
+	iconName:'material|account',
+	selectedIconName:'material|account',
+	iconSize:24,
+	title:'Account',
+	view: app,
+}];
+var App = React.createClass({
+	getInitialState:function(){
+		return {
+			selectedTab:'Category'
+		}
+	},
+	render:function(){
+		return (<TabBarIOS tintColor="white" barTintColor="darkSlateBlue">
+				{
+					menus.map((m)=>{
+						return (<TabBarIOS.Item  key={m.title}
+								{...m}
+								selected={this.state.selectedTap === m.title}
+								onPress={()=>{
+									this.renderScene(m)
+								}}>
+								<NavigatorIOS
+							 	style={{'flex':1}}
+								translucent={true}
+								initialRoute={{
+									component:m.view,
+									title:m.title
+								}} />
+								</TabBarIOS.Item>)
+					})
+				}
+				</TabBarIOS>)
+	},
+	renderScene:function (tabBar) {
+		this.setState({
+			selectedTab: tabBar.title
+		});
+	}
+})
 
-AppRegistry.registerComponent('nwa', () => nwa);
+AppRegistry.registerComponent('nwa', () => App);

@@ -10,11 +10,11 @@
   "properties": {
     "regionid": {
       "type": "Number",
+      "id": 1,
       "required": true,
       "length": null,
       "precision": 16,
       "scale": 0,
-      "id": 1,
       "postgresql": {
         "columnName": "RegionID",
         "dataType": "smallint",
@@ -39,5 +39,9 @@
         "nullable": "NO"
       }
     }
-  }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
 }

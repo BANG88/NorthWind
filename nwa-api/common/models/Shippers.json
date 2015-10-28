@@ -10,11 +10,11 @@
   "properties": {
     "shipperid": {
       "type": "Number",
+      "id": 1,
       "required": true,
       "length": null,
       "precision": 16,
       "scale": 0,
-      "id": 1,
       "postgresql": {
         "columnName": "ShipperID",
         "dataType": "smallint",
@@ -54,5 +54,9 @@
         "nullable": "YES"
       }
     }
-  }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
 }

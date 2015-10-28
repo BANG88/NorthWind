@@ -10,11 +10,11 @@
   "properties": {
     "territoryid": {
       "type": "String",
+      "id": 1,
       "required": true,
       "length": 20,
       "precision": null,
       "scale": null,
-      "id": 1,
       "postgresql": {
         "columnName": "TerritoryID",
         "dataType": "character varying",
@@ -54,5 +54,9 @@
         "nullable": "NO"
       }
     }
-  }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
 }

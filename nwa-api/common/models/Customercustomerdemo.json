@@ -10,11 +10,11 @@
   "properties": {
     "customerid": {
       "type": "String",
+      "id": 1,
       "required": true,
       "length": null,
       "precision": null,
       "scale": null,
-      "id": 1,
       "postgresql": {
         "columnName": "CustomerID",
         "dataType": "character",
@@ -26,11 +26,11 @@
     },
     "customertypeid": {
       "type": "String",
+      "id": 2,
       "required": true,
       "length": null,
       "precision": null,
       "scale": null,
-      "id": 2,
       "postgresql": {
         "columnName": "CustomerTypeID",
         "dataType": "character",
@@ -40,5 +40,9 @@
         "nullable": "NO"
       }
     }
-  }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
 }

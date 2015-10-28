@@ -10,11 +10,11 @@
   "properties": {
     "employeeid": {
       "type": "Number",
+      "id": 1,
       "required": true,
       "length": null,
       "precision": 16,
       "scale": 0,
-      "id": 1,
       "postgresql": {
         "columnName": "EmployeeID",
         "dataType": "smallint",
@@ -26,11 +26,11 @@
     },
     "territoryid": {
       "type": "String",
+      "id": 2,
       "required": true,
       "length": 20,
       "precision": null,
       "scale": null,
-      "id": 2,
       "postgresql": {
         "columnName": "TerritoryID",
         "dataType": "character varying",
@@ -40,5 +40,9 @@
         "nullable": "NO"
       }
     }
-  }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
 }
