@@ -5,3 +5,6 @@ function Resource(api, options) {
 	var fetcher = fetch(API_URI + api, options || {}).then((res) => res.json());
 }
 
+Resource.restful = function (resource) {
+	
+}

@@ -1,134 +1,111 @@
-
-/**
- * Bang
- * @date Created on 2015-10-28;
- * @author YuHui(语晖)<yuhuidev@gmail.com>
- *
- */
 'use strict';
 
 var React = require('react-native');
+var app = require('./app/views/category.js');
+var { TabBarIOS, } = require('react-native-icons');
+var TabBarItemIOS = TabBarIOS.Item;
 var {
 	AppRegistry,
 	StyleSheet,
 	ListView,
-	TabBarIOS,
 	NavigatorIOS ,
-	TouchableHighlight,
+	StatusBarIOS,
 	Text,
 	View,
 } = React;
 
+var menus = [
+{
+	name:'Category',
+	iconName:'material|album',
+	selectedIconName:'material|album',
+	iconSize:24,
+	title:'所有分类',
+	component: app,
+},
+{
+	name:'Products',
+	iconName:'material|book',
+	selectedIconName:'material|book',
+	iconSize:24,
+	title:'商品列表',
+	component: app,
+},
+
+{
+	name:'Customers',
+	iconName:'material|accounts',
+	selectedIconName:'material|accounts',
+	iconSize:24,
+	title:'客户',
+	component: app,
+},
+{
+	name:'Account',
+	iconName:'material|account',
+	selectedIconName:'material|account',
+	iconSize:24,
+	title:'账号管理',
+	component: app,
+}];
+
+var commonColor={
+	tintColor:'#c1d82f',
+	barTintColor:'#000'
+}
+
+StatusBarIOS.setStyle('light-content',true);
+
 var nwa = React.createClass({
-	getInitialState:function () {
+	getInitialState:function(){
 		return {
-			dataSource: new ListView.DataSource({
-				rowHasChanged: (row1, row2) => row1 !== row2,
-			}),
-			loaded: false
+			selectedTab:menus[0]['title']
 		}
 	},
-	componentDidMount: function() {
-		this.renderCategory();
-	},
-	renderCategory: function() {
-		fetch('http://0.0.0.0:3000/api/Categories')
-			.then((res) => res.json()).then((res) => {
-				this.setState({
-					dataSource: this.state.dataSource.cloneWithRows(res),
-					loaded: true,
-				});
-			}).done();
-	},
-	render: function() {
-		if (!this.state.loaded) {
-			return this.renderLoadingView();
-		}
+	render: function () {
+    return (
+      <TabBarIOS
+        selectedTab={this.state.selectedTab}
+        tintColor={commonColor.tintColor}
+        barTintColor={commonColor.barTintColor}>
+				{
+					menus.map((menu)=>{
 
+      return  <TabBarItemIOS
+          {...menu} key={menu.title}
+					style={styles.item}
+          selected={this.state.selectedTab === menu.title}
+          onPress={() => {
+            this.setState({
+              selectedTab: menu.title,
+            });
+          }}>
+          {this._renderContent(menu)}
+        </TabBarItemIOS>
+
+			})
+			}
+      </TabBarIOS>
+    );
+  },
+	_renderContent:function (menu) {
 		return (
-				<ListView
-				dataSource={this.state.dataSource}
-				renderRow={this.renderRow}
-				style={styles.listView}
-				/>
-				);
-	},
+			<NavigatorIOS
+			tintColor={commonColor.tintColor}
+			titleTextColor={commonColor.tintColor}
+			barTintColor={commonColor.barTintColor}
 
-	renderLoadingView: function() {
-		return (
-				<View style={styles.container}>
-				<Text>
-				Loading data...
-				</Text>
-				</View>
-				);
-	},
-
-	renderRow: function(row) {
-		return (
-				<TouchableHighlight activeOpacity={.9}
-				underlayColor='darkslateblue'
-				onPress={
-					()=>{
-						this.props.navigator.push({
-							'title': row.categoryname,
-							component:React.createClass({
-								render:function () {
-									return (<View style={styles.view}><Text>
-											{row.categoryname}
-											</Text></View>)
-								}
-							})
-						})
-					}
-				}>
-				<View style={styles.row}>
-				<Text style={styles.title}>{row.categoryname}</Text>
-				</View>
-				</TouchableHighlight>
-				);
-	},
-});
-
+			 style={styles.navigator} initialRoute={{...menu}} />
+		)
+	}
+})
 var styles = StyleSheet.create({
-	view: {
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		alignItems: 'center'
+	navigator:{
+		flex:1
 	},
-	container: {
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		alignItems: 'center'
-	},
-	row: {
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-		backgroundColor: '#ffffff',
-		borderBottomWidth:1,
-		borderBottomColor:'#f5f5f5',
-		padding:10
-	},
-	listView: {
-		paddingTop: 70,
-	},
-	title:{
-		fontSize: 14,
-	},
-	welcome: {
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10,
-	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5,
-	},
-});
+	item:{
+		color:commonColor.tintColor
+	}
+})
 
 module.exports = nwa;
