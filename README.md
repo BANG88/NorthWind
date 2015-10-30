@@ -4,8 +4,11 @@
 - 使用 NorthWind 示例数据库为数据来源
 - 使用 react-native 创建示例项目
 
-## dir
+![Preview](./assets/preview.gif)
 
+
+## dir
+```
 .
 ├── LICENSE
 ├── README.md
@@ -25,6 +28,6 @@
     ├── node_modules
     ├── package.json
     └── server
-
+```
 - nwa react-native app
 - nwa-api loopback service
