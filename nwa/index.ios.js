@@ -1,9 +1,10 @@
 'use strict';
+import React from 'react-native';
+import App from './index.js';
 
-var React = require('react-native');
-var app = require('./index.js');
-var {
+
+let  {
 	AppRegistry
 } = React;
 
-AppRegistry.registerComponent('nwa', () => app);
+AppRegistry.registerComponent('nwa', () => App);

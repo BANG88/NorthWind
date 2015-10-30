@@ -1,10 +1,15 @@
 var API_URI = 'http://0.0.0.0:3000/api/';
-module.exports = Resource;
 
-function Resource(api, options) {
-	var fetcher = fetch(API_URI + api, options || {}).then((res) => res.json());
+class Resource {
+	constructor(API_URI = API_URI){
+		this.baseUri = API_URI;
+	}
+	ajax(resource,filter={}){
+		return fetch(this.baseUri + resource)
+	}
+	get(r,f){
+		return this.ajax(r,f)
+	}
 }
 
-Resource.restful = function (resource) {
-	
-}
+export default Resource;
