@@ -9,6 +9,8 @@
 import React from 'react-native';
 import Product from './products.js';
 import style from '../style.js';
+import request from '../api.js';
+
 
 let {styles,common,Spinner} = style;
 
@@ -41,13 +43,16 @@ class Category extends React.Component{
 
 
 	renderCategory() {
-		fetch('http://0.0.0.0:3000/api/Categories')
-		.then((res) => res.json()).then((res) => {
-			this.setState({
-				dataSource: this.state.dataSource.cloneWithRows(res),
-				loaded: true,
-			});
-		}).done();
+		request.get('Categories')
+		.end((err,res) => {
+			if(res.ok){
+
+				this.setState({
+					dataSource: this.state.dataSource.cloneWithRows(res.body),
+					loaded: true,
+				});
+			}
+		})
 	}
 	render() {
 		if (!this.state.loaded) {
@@ -62,19 +67,6 @@ class Category extends React.Component{
 			renderRow={this.renderRow.bind(this)}
 			style={styles.listView}
 			/>
-		);
-	}
-
-	renderLoadingView() {
-		return (
-			<View style={styles.container}>
-			<Spinner name='ion|load-a' size={24} style={{width: 24, height: 24, backgroundColor: 'transparent'}}
-			color='#777'/>
-
-			<Text>
-			Loading data...
-				</Text>
-				</View>
 		);
 	}
 
@@ -100,6 +92,19 @@ class Category extends React.Component{
 			<Text style={styles.title}>{row.categoryname}</Text>
 			</View>
 			</TouchableHighlight>
+		);
+	}
+
+	renderLoadingView() {
+		return (
+			<View style={styles.container}>
+			<Spinner name='ion|load-a' size={24} style={{width: 24, height: 24, backgroundColor: 'transparent'}}
+			color='#777'/>
+
+			<Text>
+			Loading data...
+				</Text>
+				</View>
 		);
 	}
 

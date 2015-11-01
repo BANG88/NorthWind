@@ -6,7 +6,7 @@
  */
 import React from 'react-native';
 import style from '../style.js';
-
+import request from '../api.js';
 let {styles,Spinner} = style;
 let {View,Text,ListView} = React;
 
@@ -24,24 +24,25 @@ class Product extends React.Component{
 	componentDidMount(){
 		var categoryId = this.props ? this.props.categoryid : null;
 		var filter = categoryId ? '?filter[where][categoryid]='+categoryId : '';
-		fetch('http://0.0.0.0:3000/api/products'+filter).then((res)=>res.json()).then((res)=>{
+		request.get('products'+filter).end((err,res)=>{
 			this.setState({
-				dataSource:this.state.dataSource.cloneWithRows(res),
+				dataSource:this.state.dataSource.cloneWithRows(res.body),
 				loaded:true
 			})
-		}).done();
+		});
 	}
 	render(){
 		if(!this.state.loaded){
 			return (<View>
 							<Spinner name='material|account' size={24} style={{width: 24, height: 24, backgroundColor: 'transparent'}}
-                   color='#777'/>
+							color='#777'/>
 							<Text>Loading...</Text></View>)
 		}
 		return (
 			<ListView
 			dataSource={this.state.dataSource}
 			contentInset={{bottom:49}}
+			initialListSize={24}
 			automaticallyAdjustContentInsets={false}
 			renderRow={this._renderRow}
 			showsVerticalScrollIndicator={false}

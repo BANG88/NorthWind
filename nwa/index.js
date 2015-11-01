@@ -3,6 +3,8 @@
 import React from 'react-native';
 import app from './app/views/category.js';
 import Product  from  './app/views/products.js';
+import Customer  from  './app/views/customers.js';
+import Map  from  './app/views/map.js';
 import style  from  './app/style.js';
 let {styles, common} = style;
 
@@ -42,15 +44,15 @@ let menus = [
 		selectedIconName:'material|accounts',
 		iconSize:24,
 		title:'客户',
-		component: app,
+		component: Customer,
 	},
 	{
 		name:'Account',
 		iconName:'material|account',
 		selectedIconName:'material|account',
 		iconSize:24,
-		title:'账号管理',
-		component: app,
+		title:'用户分布',
+		component: Map,
 	}];
 
 	StatusBarIOS.setStyle('light-content',true);
@@ -102,7 +104,6 @@ let menus = [
 				tintColor={common.tintColor}
 				titleTextColor={common.tintColor}
 				barTintColor={common.barTintColor}
-
 				style={styles.navigator} initialRoute={{...menu}} />
 			)
 		}
